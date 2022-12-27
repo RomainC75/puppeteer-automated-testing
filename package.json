@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout=30000 ./tests"
+    "test": "mocha --timeout=30000 ./tests",
+    "test:device": "mocha --timeout=30000 ./tests/03-device.test.js",
+    "test:hooks": "mocha --timeout=30000 ./tests/03-hooks.test.js",
+    "test:e2e": "mocha --timeout=30000 ./tests/e2e/*.test.js"
   },
   "author": "",
   "license": "ISC",

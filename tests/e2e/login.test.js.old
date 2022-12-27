@@ -1,0 +1,50 @@
+const puppeteer= require('puppeteer')
+
+describe('Login test',()=>{
+    let browser 
+    let page
+    before(async()=>{
+        const browser = await puppeteer.launch({
+            headless:false,
+            devtools:false,
+            slowMo:10
+        })
+        // const context = await browser.createIncognitoBrowserContext()
+        // page = await context.newPage()
+        page = await browser.newPage()
+        page.setDefaultTimeout(10000)
+        page.setDefaultNavigationTimeout(10000)
+    })
+    after(async()=>{
+        await browser.close()
+    })
+
+    it('Login Test - Invalid Credentials',async ()=>{
+        await page.goto('http://zero.webappsecurity.com/index.html')
+        await page.waitForSelector('#signin_button')
+        await page.click('#signin_button')
+
+        await page.waitForSelector('#user_login')
+        await page.type('#user_login','invalid_creds')
+        await page.type('#user_password','invalid_pass')
+        await page.click('#user_remember_me')
+        await page.click('.btn.btn-primary[type="submit"]')
+
+        await page.waitForSelector('.alert.alert-error')
+        // const res = await page.waitForFunction(()=>document.querySelector('.alert')!=null)
+        // console.log('res : ',res)
+    })
+    it('Login Test - Invalid Credentials',async()=>{
+        await page.goto('http://zero.webappsecurity.com/index.html')
+        await page.waitForSelector('#signin_button')
+        await page.click('#signin_button')
+
+        await page.waitForSelector('#user_login')
+        await page.type('#user_login','username')
+        await page.type('#user_password','password')
+        await page.click('#user_remember_me')
+        await page.click('.btn.btn-primary[type="submit"]')
+
+        await page.waitForSelector('#settingsBox')
+    })
+})
