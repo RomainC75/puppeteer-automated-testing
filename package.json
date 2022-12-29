@@ -7,12 +7,19 @@
     "test": "mocha --timeout=30000 ./tests",
     "test:device": "mocha --timeout=30000 ./tests/03-device.test.js",
     "test:hooks": "mocha --timeout=30000 ./tests/03-hooks.test.js",
-    "test:e2e": "mocha --timeout=30000 ./tests/e2e/*.test.js"
+    "test:e2e": "mocha --timeout=30000 ./tests/e2e/*.test.js",
+    "test-snapshots": "jest --config=jest.config.js --detectOpenHandles --forceExit",
+    "test-snapshots-update": "jest --config=jest.config.js --updateSnapshot --detectOpenHandles --forceExit",
+    "test:percy": "percy exec -- jest -i './04-visual_regression/tests-snapshots/__tests__/percy.test.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@percy/cli": "^1.16.0",
+    "@percy/puppeteer": "^2.0.2",
     "chai": "^4.3.7",
+    "jest": "^29.3.1",
+    "jest-image-snapshot": "^6.1.0",
     "mocha": "^10.2.0",
     "puppeteer": "^19.4.1"
   }

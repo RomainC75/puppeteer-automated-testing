@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer')
-const { click } = require('../lib/helpers')
 
 describe('Device emulation', () => {
    let browser
@@ -22,11 +21,7 @@ describe('Device emulation', () => {
    })
 
    //    ================================
-   it('should click on the button',async()=>{
-      await page.goto('http://zero.webappsecurity.com/index.html')
-      await click(page, '#online-banking')
-      await page.waitForFunction(()=>!document.querySelector('#online-banking'))
-   })
+
 
    it('Desktop Device Test', async () => {
       await page.setViewport({
